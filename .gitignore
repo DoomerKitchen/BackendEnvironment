@@ -1,0 +1,7 @@
+.env
+/logs
+.git
+.vscode
+databases
+ssh_private_key.ppk
+ssh_key
