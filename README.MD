@@ -1,5 +1,5 @@
 # Описание
-- Шаблон проекта на Laravel с Docker и SSL сертификатом
+- Шаблон проекта Laravel на Docker с SSL сертификатом
 # Инструкция
 ## Правка домена data/nginx/app.conf;
 - example.com на YOUR_DOMAIN 
