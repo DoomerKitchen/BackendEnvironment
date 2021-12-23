@@ -50,7 +50,7 @@ services:
     working_dir: /var/www/
     environment:
       DB_HOST: mysql
-      DB_USER: "${MYSQL_USER}"
+      DB_USERNAME: "${MYSQL_USER}"
       DB_PASSWORD: "${MYSQL_PASSWORD}"
       DB_DATABASE: "${MYSQL_DATABASE}"
       DOMAIN: "${DOMAIN}"

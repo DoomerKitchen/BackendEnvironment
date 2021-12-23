@@ -1,7 +1,7 @@
 FROM alpine:3.14
 RUN apk update && apk add wget curl
+RUN apk add --no-cache bash && apk add shadow
 RUN apk add --update curl && \
     rm -rf /var/cache/apk/*
-COPY run.sh var/ 
-
+COPY run.sh var/run.sh
 ENTRYPOINT /var/run.sh
