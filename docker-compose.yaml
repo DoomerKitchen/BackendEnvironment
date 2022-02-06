@@ -16,6 +16,7 @@ services:
       DB_USERNAME: "${MYSQL_USER}"
       DB_PASSWORD: "${MYSQL_PASSWORD}"
       DB_DATABASE: "${MYSQL_DATABASE}"
+      # REDIS_PASSWORD: "${REDIS_PASSWORD}"
       DOMAIN: "${DOMAIN}"
 
     volumes:
@@ -27,13 +28,13 @@ services:
       - 9000:9000
     links:
       - mysql
-  cron:
-    build:
-      context: ./data/cron
-      dockerfile: dockerfile.cron
-    image: cron
-    # command: chmod +x /var/run.sh
-    restart: always
+  # cron:
+  #   build:
+  #     context: ./data/cron
+  #     dockerfile: dockerfile.cron
+  #   image: cron
+  #   # command: chmod +x /var/run.sh
+  #   restart: always
   queue:
     build:
       args:
@@ -53,6 +54,7 @@ services:
       DB_USERNAME: "${MYSQL_USER}"
       DB_PASSWORD: "${MYSQL_PASSWORD}"
       DB_DATABASE: "${MYSQL_DATABASE}"
+      # REDIS_PASSWORD: "${REDIS_PASSWORD}"
       DOMAIN: "${DOMAIN}"
     volumes:
       - ${APP_PATH_HOST}:/var/www
@@ -94,6 +96,26 @@ services:
       PMA_HOST: mysql
       # PMA_USER: "${MYSQL_USER}"
       # PMA_PASSWORD: "${MYSQL_PASSWORD}"
+  redis:
+    image: "redis:alpine"
+    command: redis-server # --requirepass ${REDIS_PASSWORD}
+    # ports:
+    #  - "6379:6379"
+    volumes:
+     - ${Db_PATH_HOST}/redis-data:/var/lib/redis
+
+    environment:
+     - REDIS_REPLICATION_MODE=master
+  websockets:
+    container_name: websocket-server
+    restart: always
+    build:
+      context: ./data/websocket-server
+      dockerfile: dockerfile.echo      
+    ports:
+        - 6001:6001
+    volumes:
+    - ./data/websocket-server:/app
   certbot:
     image: certbot/certbot
     volumes:

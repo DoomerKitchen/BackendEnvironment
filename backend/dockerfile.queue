@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:8.1-fpm
 
 ARG user
 ARG uid
@@ -19,14 +19,6 @@ RUN apt-get update && apt-get install -y  \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copy composer.lock and composer.json
-# COPY composer.lock composer.json artisan /var/www/
-COPY composer.json artisan wait-for-it.sh /var/www/
-
-# В случае монтирования проекта без vendor
-
-# WORKDIR /var/www
-# RUN composer install --prefer-source --no-interaction
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Install PHP extensions
@@ -36,10 +28,6 @@ RUN docker-php-ext-install mysqli pdo_mysql zip mbstring exif pcntl bcmath gd
 RUN if [ "$user" != "root" ] ; then useradd -G www-data,root -u $uid -d /home/$user $user ; fi
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
-
-
-
-# COPY . /var/www
 
 USER $user:$uid
 RUN echo $user:$uid
