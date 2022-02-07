@@ -9,4 +9,4 @@ key:
 install:
 	docker-compose exec backend composer install
 migrate: 
-	docker-compose exec backend php /var/www/artisan migrate --seed
+	docker-compose exec backend php /var/www/artisan migrate 

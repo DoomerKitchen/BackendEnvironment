@@ -26,6 +26,8 @@
 - Создать файл `./RepName/.env` и заполнить его в соответствии с `.env.example` проекта социальной сети
 - Правка домена data/nginx/app.conf     
 `example.com на YOUR_DOMAIN `
+- Правка домена data/websocket-server/laravel-echo-server.json     
+`example.com на YOUR_DOMAIN `
 - Генерация  SSL сертификата и запуск контейнеров  
 `make run DOMAIN=YOUR_DOMAIN EMAIL=YOUR_EMAIL`
 - Генерация ключа приложения    

@@ -118,6 +118,7 @@ services:
         - 6001:6001
     volumes:
     - ./data/websocket-server/laravel-echo-server.json:/app/laravel-echo-server.json
+    - ./data/certbot/conf:/etc/letsencrypt
   certbot:
     image: certbot/certbot
     volumes:
