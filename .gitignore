@@ -6,3 +6,4 @@
 databases
 ssh_private_key.ppk
 ssh_key
+data/websocket-server/laravel-echo-server.lock

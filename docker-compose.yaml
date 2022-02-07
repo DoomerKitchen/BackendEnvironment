@@ -108,6 +108,7 @@ services:
     environment:
      - REDIS_REPLICATION_MODE=master
   websockets:
+    image: websockets
     container_name: websocket-server
     restart: always
     build:
@@ -115,8 +116,8 @@ services:
       dockerfile: dockerfile.echo      
     ports:
         - 6001:6001
-    volumes:
-    - ./data/websocket-server:/app
+    # volumes:
+    # - ./data/websocket-server:/app
   certbot:
     image: certbot/certbot
     volumes:
