@@ -6,7 +6,7 @@ services:
       args:
         user: ${USER}
         uid: ${USER_ID}
-      context: ${APP_PATH_HOST}
+      context: ./data/backend
       dockerfile: dockerfile
     container_name: backend
     restart: unless-stopped
@@ -40,7 +40,7 @@ services:
       args:
         user: ${USER}
         uid: ${USER_ID}
-      context: ${APP_PATH_HOST}
+      context: ./data/backend
       dockerfile: dockerfile.queue
     container_name: queue
     image: backend-queue
